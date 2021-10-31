@@ -10,21 +10,22 @@ bash ~/qbittorrent-nox-static.sh -h
 
 The script has some `env` settings that can trigger certain behaviours.
 
-| Build variable       | Default if unset | Options                             | example usage                             |
-| -------------------- | ---------------- | ----------------------------------- | ----------------------------------------- |
-| `libtorrent_version` | `1.2`            | `1.2` `2.0`                         | `export libtorrent_version=2.0`           |
-| `qbt_qt_version`     | `5.15`           | `5.12 ` `5.13 ` `5.14` `5.15` `6.1` | `export qbt_qt_version=6.1`               |
-| `qbt_build_tool`     | empty = `qmake`  | `cmake`                             | `export qbt_build_tool=cmake`             |
-| `qbt_cross_name`     | empty = `x86_64` | `aarch64`  `armv7` `armhf`          | `export qbt_cross_name=aarch64`           |
-| `qbt_patches_url`    | empty = `unset`  | `username/repo`                     | `export qbt_patches_url=userdocs/patches` |
+| Build variable       | Default if unset | Options                                  | example usage                             |
+| -------------------- | ---------------- | ---------------------------------------- | ----------------------------------------- |
+| `libtorrent_version` | `1.2`            | `1.2` `2.0`                              | `export libtorrent_version=2.0`           |
+| `qbt_qt_version`     | `5.15`           | `5.12 ` `5.13 ` `5.14` `5.15` `6.1``6.2` | `export qbt_qt_version=6.2`               |
+| `qbt_cross_target`   | Host platform    | `alpine` `debian` `ubuntu`               | `export qbt_cross_target=alpine`          |
+| `qbt_build_tool`     | `qmake`          | `cmake`                                  | `export qbt_build_tool=cmake`             |
+| `qbt_cross_name`     | `x86_64`         | `aarch64`  `armv7`                       | `export qbt_cross_name=aarch64`           |
+| `qbt_patches_url`    | empty = `unset`  | `username/repo`                          | `export qbt_patches_url=userdocs/patches` |
 
-> [!note|iconVisibility:hidden|labelVisibility:hidden] If you set `qbt_build_tool=cmake`,  `qt_version=6.1` and `libtorrent_version=2.0` you can build against QT6. The build will fail until qBittorrent officially supports QT6.
+> [!note|iconVisibility:hidden|labelVisibility:hidden] If you set `qbt_build_tool=cmake` and `qt_version=6.2`  with the switch `-qm` you can build against QT6.
 
 ### Switches and flags summarised
 
 All switches and flags have a supporting help option that will provide dynamic content where applicable.
 
->[!note|iconVisibility:hidden|labelVisibility:hidden] The `--boot-strap-release` and `--boot-strap-multi-arch` options are specific to GitHub actions but if you read `--help-boot-strap-release` you can see how to trigger `aarch64|armhf|armv7` builds on your local system using Alpine via docker.
+>[!note|iconVisibility:hidden|labelVisibility:hidden] The `--boot-strap-release` and `--boot-strap-multi-arch` options are specific to GitHub actions but if you read `--help-boot-strap-release` you can see how to trigger `aarch64|armv7` builds on your local system using Alpine/Debian/Ubuntu via docker.
 
 ```none
  Here are a list of available options
@@ -128,9 +129,9 @@ bash ~/qbittorrent-nox-static.sh all
 
 ### Build - modules (optional and mostly for debugging and testing)
 
-You can build modules indivually, subject to this warning.
+You can build modules individually, subject to this warning.
 
-> [!warning|iconVisibility:hidden|labelVisibility:hidden] It's best to consider all indivual modules listed below as being dependent on the previous modules being built for that module to build successfully.
+> [!warning|iconVisibility:hidden|labelVisibility:hidden] It's best to consider all individual modules listed below as being dependent on the previous modules being built for that module to build successfully.
 
 ```bash
 bash ~/qbittorrent-nox-static.sh module
